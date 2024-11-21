@@ -19,7 +19,7 @@ pipeline {
     stage('Debug') {
         steps {
             sh 'echo $PATH'          // Check if Docker's path is included
-            sh 'which docker'        // Locate Docker executable
+            sh 'which docker'        // Locate Docker executable 
             sh 'docker --version'    // Confirm Docker availability
         }
     }

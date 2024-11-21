@@ -16,11 +16,19 @@ pipeline {
         }
     }
 
-    stage('deploy') {
+    stage('Debug') {
         steps {
-            sh 'node index.js'
+            sh 'echo $PATH'          // Check if Docker's path is included
+            sh 'which docker'        // Locate Docker executable
+            sh 'docker --version'    // Confirm Docker availability
         }
     }
+
+    // stage('deploy') {
+    //     steps {
+    //         sh 'docker ps'
+    //     }
+    // }
   }
 
 }

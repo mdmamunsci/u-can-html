@@ -18,7 +18,7 @@ pipeline {
 
     stage('deploy') {
         steps {
-            sh 'docker ps'
+            sh 'node index.js'
         }
     }
   }

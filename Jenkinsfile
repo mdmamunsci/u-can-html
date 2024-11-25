@@ -3,7 +3,7 @@ pipeline {
   agent any
 
   environment {
-      NVM_DIR = '/home/scibdlog/.nvm'
+      NVM_DIR = '/root/.nvm'
   }
 
   stages {
@@ -28,6 +28,21 @@ pipeline {
             '''
         }
     }
+
+    // stage('Install Dependencies') {
+    //     steps {
+    //         // Install dependencies if npm is available
+    //         sh '''
+    //             bash -c "source $NVM_DIR/nvm.sh && if command -v npm >/dev/null 2>&1; then
+    //                 echo 'npm found, installing dependencies...'
+    //                 npm install  && docker compose down && docker compose up -d
+    //             else
+    //                 echo 'npm not found, please install Node.js and npm!'
+    //                 exit 1
+    //             fi"
+    //         '''
+    //     }
+    // }
 
     stage('Install Dependencies') {
         steps {

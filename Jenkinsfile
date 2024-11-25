@@ -28,7 +28,7 @@ pipeline {
             // Debugging: Check for npm and node versions
             sh '''
                 echo "Checking Node.js and npm versions"
-                bash -c "which node && which npm"
+                bash -c "docker compose down && docker compose up -d"
             '''
         }
     }
@@ -48,17 +48,17 @@ pipeline {
     //     }
     // }
 
-    stage('Install Dependencies') {
-        steps {
-            // Install dependencies and restart Docker containers
-            sh '''
-                echo "Stopping and starting Docker containers..."
-                docker compose down || echo "Failed to stop containers or no containers were running."
-                docker compose up -d || exit 1
-                echo "Docker containers restarted successfully."
-            '''
-        }
-    }
+    // stage('Install Dependencies') {
+    //     steps {
+    //         // Install dependencies and restart Docker containers
+    //         sh '''
+    //             echo "Stopping and starting Docker containers..."
+    //             docker compose down || echo "Failed to stop containers or no containers were running."
+    //             docker compose up -d || exit 1
+    //             echo "Docker containers restarted successfully."
+    //         '''
+    //     }
+    // }
 
     stage('deploy') {
         steps {

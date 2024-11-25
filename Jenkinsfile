@@ -3,7 +3,6 @@ pipeline {
   agent any
 
   environment {
-      // Ensure that nvm is sourced and available
       NVM_DIR = '/home/scibdlog/.nvm'
   }
 
@@ -25,11 +24,7 @@ pipeline {
             // Debugging: Check for npm and node versions
             sh '''
                 echo "Checking Node.js and npm versions"
-                source $NVM_DIR/nvm.sh
-                which node
-                which npm
-                node -v
-                npm -v
+                bash -c "source $NVM_DIR/nvm.sh && which node && which npm && node -v && npm -v"
             '''
         }
     }
@@ -38,14 +33,13 @@ pipeline {
         steps {
             // Install dependencies if npm is available
             sh '''
-                source $NVM_DIR/nvm.sh
-                if command -v npm >/dev/null 2>&1; then
-                    echo "npm found, installing dependencies..."
+                bash -c "source $NVM_DIR/nvm.sh && if command -v npm >/dev/null 2>&1; then
+                    echo 'npm found, installing dependencies...'
                     npm install
                 else
-                    echo "npm not found, please install Node.js and npm!"
+                    echo 'npm not found, please install Node.js and npm!'
                     exit 1
-                fi
+                fi"
             '''
         }
     }

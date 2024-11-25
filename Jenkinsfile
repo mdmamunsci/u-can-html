@@ -50,9 +50,12 @@ pipeline {
 
     stage('Install Dependencies') {
         steps {
-            // Install dependencies if npm is available
+            // Install dependencies and restart Docker containers
             sh '''
-                 docker compose down && docker compose up -d
+                echo "Stopping and starting Docker containers..."
+                docker compose down || echo "Failed to stop containers or no containers were running."
+                docker compose up -d || exit 1
+                echo "Docker containers restarted successfully."
             '''
         }
     }

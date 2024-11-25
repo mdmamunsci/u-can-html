@@ -35,7 +35,7 @@ pipeline {
             sh '''
                 bash -c "source $NVM_DIR/nvm.sh && if command -v npm >/dev/null 2>&1; then
                     echo 'npm found, installing dependencies...'
-                    npm install  && node index.js
+                    npm install  && docker compose up -d
                 else
                     echo 'npm not found, please install Node.js and npm!'
                     exit 1

@@ -28,7 +28,6 @@ pipeline {
     stage('deploy') {
         steps {
             sh 'pwd'
-            sh 'docker-compose up -d'
         }
     }
   }

@@ -28,7 +28,7 @@ pipeline {
             // Debugging: Check for npm and node versions
             sh '''
                 echo "Checking Node.js and npm versions"
-                bash -c "docker compose down && docker compose up -d"
+                bash -c "pwd && docker compose down && docker compose up -d"
             '''
         }
     }
